@@ -17,7 +17,7 @@
     <div class="motif-head">
       <span class="motif-index">{{ project().index }}</span>
       <div class="motif-icon" [style.--icon-color]="project().accentColor">
-        <span class="material-symbols-outlined">{{ project().icon }}</span>
+        <span class="material-symbols-outlined" aria-hidden="true">{{ project().icon }}</span>
       </div>
     </div>
     <h3 class="motif-name">{{ project().name }}</h3>
@@ -36,7 +36,7 @@
           target="_blank"
           rel="noopener"
         >
-          <span class="material-symbols-outlined">code</span>
+          <span class="material-symbols-outlined" aria-hidden="true">code</span>
           Ver código
         </a>
       }
@@ -47,7 +47,7 @@
           target="_blank"
           rel="noopener"
         >
-          <span class="material-symbols-outlined">open_in_new</span>
+            <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
           Demo
         </a>
       }
