@@ -32,7 +32,7 @@
 }
 
 .section-label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-jacquard-gold, #cc9a2e);
   text-transform: uppercase;
@@ -82,7 +82,7 @@
 }
 
 .clearance-text {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-family: var(--font-printer);
   color: var(--color-jacquard-ink, #7d8fa3);
   text-transform: uppercase;
@@ -224,7 +224,7 @@
 }
 
 .lang-flag {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }

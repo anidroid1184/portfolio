@@ -106,7 +106,7 @@
 
 .weave-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.35em;
   color: var(--color-jacquard-gold, #c9a84c);
@@ -184,7 +184,7 @@
 
 .scroll-text {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--color-jacquard-gold, #c9a84c);
@@ -247,7 +247,7 @@
 
 .motifs-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: var(--color-jacquard-gold, #c9a84c);
@@ -336,7 +336,7 @@
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-jacquard-gold, #c9a84c);

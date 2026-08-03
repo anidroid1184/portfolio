@@ -20,7 +20,7 @@
 
 .contact-subtitle {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.3em;
   color: var(--color-jacquard-gold, #cc9a2e);
@@ -102,7 +102,7 @@
 
 .contact-link-item span {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   opacity: 0.5;
 }
 
@@ -125,7 +125,7 @@
 .contact-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-jacquard-gold, #cc9a2e);
@@ -174,7 +174,7 @@
   border-radius: 2px;
   padding: 0.6rem 1.25rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;

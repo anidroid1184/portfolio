@@ -26,7 +26,7 @@
 .boot-line {
   margin: 0;
   font-family: 'Courier Prime', monospace;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: #8B949E;
   animation: boot-fade-in 0.3s ease-out;
 }
@@ -137,7 +137,7 @@
 
 .help-title {
   color: #58A6FF;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -196,7 +196,7 @@
 .help-section-label {
   color: var(--color-jacquard-gold, #cc9a2e);
   font-family: var(--font-printer);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   padding: 0.5rem 0.75rem 0.25rem;
@@ -205,7 +205,7 @@
 
 .help-key-hint {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   color: rgba(204, 154, 46, 0.4);
   margin-left: auto;
 }
@@ -217,7 +217,7 @@
   }
 
   .prompt-text {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .console-popup {
@@ -299,7 +299,7 @@
   border: 1px solid rgba(204, 154, 46, 0.15);
   border-radius: 2px;
   font-family: var(--font-printer);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--color-jacquard-ink, #7d8fa3);
   animation: popup-in 0.3s ease-out;
 }
