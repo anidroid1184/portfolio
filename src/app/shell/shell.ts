@@ -1,11 +1,11 @@
 import { Component, signal, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { TerminalBar } from '../terminal/terminal-bar/terminal-bar';
 import { I18nService } from '../core/services/i18n/i18n.service';
 
 @Component({
   selector: 'app-shell',
-  imports: [RouterOutlet, TerminalBar],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, TerminalBar],
   templateUrl: './shell.html',
   styleUrl: './shell.css',
 })

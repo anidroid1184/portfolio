@@ -1,4 +1,15 @@
-<footer class="terminal-bar" [class.terminal-bar--full]="!sidebarOpen()">
+<footer class="terminal-bar">
+  <!-- Hint popup -->
+  @if (showPopup) {
+    <div class="console-popup">
+      <div class="console-popup-arrow" aria-hidden="true"></div>
+      <div class="console-popup-body">
+        <p class="console-popup-text">Usa la consola para navegar. Escribe un comando y presiona Enter.</p>
+        <button class="console-popup-close" (click)="dismissPopup()" aria-label="Cerrar">×</button>
+      </div>
+    </div>
+  }
+
   @if (terminalCommandService.isHelpVisible()) {
     <div class="help-overlay">
       <div class="help-content">
@@ -50,6 +61,15 @@
       <button class="help-btn" (click)="toggleHelp()" aria-label="Mostrar ayuda">
         <span class="material-symbols-outlined">help_outline</span>
       </button>
+    </div>
+  }
+
+  <!-- Persistent hint -->
+  @if (bootDone && showHint && !terminalCommandService.isHelpVisible() && !showPopup) {
+    <div class="inline-hint">
+      <span class="material-symbols-outlined inline-hint-icon">info</span>
+      <span>Escribe <strong>help</strong> para ver los comandos</span>
+      <button class="inline-hint-close" (click)="dismissHint()" aria-label="Cerrar">×</button>
     </div>
   }
 </footer>

@@ -24,6 +24,28 @@
       </div>
     </section>
 
+    <section class="sidebar-section border-b border-card-cream/10">
+      <h3 class="section-label">ARCHIVE_INDEX</h3>
+      <nav class="sidebar-nav">
+        <a class="sidebar-nav-link" routerLink="/home" routerLinkActive="sidebar-nav-link--active">
+          <span class="sidebar-nav-num">01</span>
+          <span>Inicio</span>
+        </a>
+        <a class="sidebar-nav-link" routerLink="/whoami" routerLinkActive="sidebar-nav-link--active">
+          <span class="sidebar-nav-num">02</span>
+          <span>Quién soy</span>
+        </a>
+        <a class="sidebar-nav-link" routerLink="/experience" routerLinkActive="sidebar-nav-link--active">
+          <span class="sidebar-nav-num">03</span>
+          <span>Experiencia</span>
+        </a>
+        <a class="sidebar-nav-link" routerLink="/contact" routerLinkActive="sidebar-nav-link--active">
+          <span class="sidebar-nav-num">04</span>
+          <span>Contacto</span>
+        </a>
+      </nav>
+    </section>
+
     <section class="sidebar-section flex-1">
       <h3 class="section-label">COMMS_LINK</h3>
       <div class="space-y-6 font-printer">
@@ -83,5 +105,5 @@
     <router-outlet />
   </main>
 
-  <app-terminal-bar [sidebarOpen]="sidebarOpen()" aria-label="Barra de comandos terminal" />
+  <app-terminal-bar aria-label="Barra de comandos terminal" />
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, input, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TerminalCommandService } from '../services/terminal-command.service';
 import { I18nService } from '../../core/services/i18n/i18n.service';
@@ -21,12 +21,13 @@ const BOOT_SEQUENCE: BootLine[] = [
   styleUrl: './terminal-bar.css',
 })
 export class TerminalBar implements OnInit, OnDestroy {
-  readonly sidebarOpen = input(true);
   readonly i18n = inject(I18nService);
 
   inputValue = '';
   bootLines: string[] = [];
   bootDone = false;
+  showHint = true;
+  showPopup = false;
   private _timeouts: ReturnType<typeof setTimeout>[] = [];
 
   constructor(readonly terminalCommandService: TerminalCommandService) {}
@@ -44,7 +45,14 @@ export class TerminalBar implements OnInit, OnDestroy {
     this._timeouts.push(
       setTimeout(() => {
         this.bootDone = true;
+        this.terminalCommandService.isHelpVisible.set(true);
+        this.showPopup = true;
       }, cumulative + 400),
+    );
+    this._timeouts.push(
+      setTimeout(() => {
+        this.showHint = false;
+      }, cumulative + 12000),
     );
   }
 
@@ -72,6 +80,15 @@ export class TerminalBar implements OnInit, OnDestroy {
 
   toggleHelp(): void {
     this.terminalCommandService.isHelpVisible.update((v) => !v);
+  }
+
+  dismissPopup(): void {
+    this.showPopup = false;
+    this.showHint = false;
+  }
+
+  dismissHint(): void {
+    this.showHint = false;
   }
 
   commandsInSection(section: string) {

@@ -16,7 +16,7 @@ export class TerminalCommandService {
 
   readonly availableCommands = [
     { name: 'whoami', description: 'Sobre mí / About me', route: '/whoami', section: 'nav' },
-    { name: 'projects', description: 'Proyectos / Projects', route: '/projects', section: 'nav' },
+    { name: 'home', description: 'Ir al inicio / Go home', route: '/home', section: 'nav' },
     {
       name: 'experience',
       description: 'Experiencia / Experience',
@@ -34,12 +34,6 @@ export class TerminalCommandService {
     { name: 'date', description: 'Fecha actual / Current date', route: null, section: 'info' },
     { name: 'sysinfo', description: 'Info del sistema / System info', route: null, section: 'info' },
     { name: 'echo <msg>', description: 'Repetir mensaje / Echo message', route: null, section: 'info' },
-    {
-      name: 'home',
-      description: 'Ir al inicio / Go home',
-      route: '/home',
-      section: 'nav',
-    },
   ];
 
   readonly sections = [
@@ -82,11 +76,9 @@ export class TerminalCommandService {
   private resolveCommand(name: string, args: string[]): CommandResult {
     const navMap: Record<string, string> = {
       whoami: '/whoami',
-      projects: '/projects',
       experience: '/experience',
       contact: '/contact',
       home: '/home',
-      ls_projects: '/projects',
       ls_experience: '/experience',
     };
 
