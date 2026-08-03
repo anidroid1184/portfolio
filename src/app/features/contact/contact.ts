@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,25 +9,24 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
   styleUrl: './contact.css',
 })
 export class Contact {
-  private fb = inject(FormBuilder);
+  private _fb = inject(FormBuilder);
 
-  submitted = false;
+  readonly submitted = signal(false);
+  readonly sendError = signal(false);
 
-  form = this.fb.group({
+  readonly form = this._fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     message: ['', Validators.required],
   });
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const { name, email, message } = this.form.value;
-      window.open(
-        `mailto:contacto@sebastian.dev?subject=Contacto desde portafolio - ${name}&body=${encodeURIComponent(message ?? '')}%0A%0A— ${name} (${email})`,
-        '_blank',
-      );
-      this.submitted = true;
-      this.form.reset();
-    }
+    if (this.form.invalid) return;
+    const { name, email, message } = this.form.value;
+    const body = encodeURIComponent(message ?? '');
+    const mailto = `mailto:contacto@sebastian.dev?subject=Portafolio - ${encodeURIComponent(name ?? '')}&body=${body}%0A%0A— ${name} (${email})`;
+    window.location.href = mailto;
+    this.submitted.set(true);
+    this.form.reset();
   }
 }
