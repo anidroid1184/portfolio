@@ -1,36 +1,34 @@
-<div class="loading-screen">
-  <div class="loading-content">
-    <div class="loading-title">
-      <span class="text-highlight-red font-bold">[[</span>
-      SYSTEM BOOT SEQUENCE
-      <span class="text-highlight-red font-bold">]]</span>
-    </div>
+<div class="loom-screen">
+  <div class="loom-threads" aria-hidden="true">
+    @for (_ of [].constructor(16); track $index) {
+      <span class="loom-line" [style.animation-delay.ms]="$index * 100"></span>
+    }
+  </div>
 
-    <div class="stages-container">
+  <div class="loom-center">
+    <p class="loom-brand">jacquard</p>
+
+    <div class="loom-stages">
       @for (stage of stages; track stage.message; let i = $index) {
         <div
-          class="stage-item"
-          [class.stage-lit]="i <= activeStage()"
-          [class.stage-current]="i === activeStage()"
+          class="loom-stage"
+          [class.loom-stage--done]="i < activeStage()"
+          [class.loom-stage--live]="i === activeStage()"
         >
-          <span class="stage-indicator">
-            <span class="indicator-dot" [class.dot-lit]="i <= activeStage()"></span>
+          <span class="loom-dot" aria-hidden="true">
+            @if (i < activeStage()) {
+              <span class="material-symbols-outlined loom-check">check</span>
+            }
           </span>
-          <span class="stage-message">{{ stage.message }}</span>
+          <span class="loom-msg">{{ stage.message }}</span>
         </div>
       }
     </div>
 
-    <div class="progress-section">
-      <div class="progress-bar-container">
-        <div class="progress-bar-fill" [style.width.%]="progress()"></div>
-      </div>
-      <div class="progress-info">
-        <span class="progress-text">{{ progressBarText() }}</span>
-        <span class="progress-percent">{{ progressPercent() }}</span>
-      </div>
+    <div class="loom-bar-track" aria-hidden="true">
+      <div class="loom-bar-fill" [style.transform]="'scaleX(' + (progress() / 100) + ')'"></div>
     </div>
 
-    <button class="skip-button" (click)="skip()">Presiona para saltar</button>
+    <button class="loom-skip" (click)="skip()">Saltar</button>
   </div>
 </div>
