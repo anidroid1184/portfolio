@@ -4,8 +4,8 @@
    ============================================ */
 
 .home-root {
-  background: var(--color-jacquard-ground, #0a0e1a);
-  color: var(--color-jacquard-ink, #8b9bb4);
+  background: var(--color-jacquard-ground, #070c17);
+  color: var(--color-jacquard-ink, #7d8fa3);
   overflow-x: hidden;
 }
 
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--color-jacquard-ground, #0a0e1a);
+  background: var(--color-jacquard-ground, #070c17);
 }
 
 .punch-card-edge {
@@ -31,8 +31,8 @@
       to right,
       transparent,
       transparent 4px,
-      var(--color-jacquard-gold, #c9a84c) 4px,
-      var(--color-jacquard-gold, #c9a84c) 5px,
+      var(--color-jacquard-gold, #cc9a2e) 4px,
+      var(--color-jacquard-gold, #cc9a2e) 5px,
       transparent 5px,
       transparent 9px
     );
@@ -50,7 +50,7 @@
 .warp-thread {
   width: 1px;
   height: 100%;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
   opacity: 0.12;
   animation: warp-breathe 4s ease-in-out infinite;
 }
@@ -75,7 +75,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
   border-radius: 1px;
   box-shadow: 0 0 16px rgba(201, 168, 76, 0.4);
 }
@@ -86,7 +86,7 @@
   right: 100%;
   width: 40vw;
   height: 1px;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
   transform: translateY(-50%);
   opacity: 0.2;
 }
@@ -109,7 +109,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.35em;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
   opacity: 0.5;
   margin-bottom: 1.5rem;
 }
@@ -138,14 +138,14 @@
   font-size: clamp(3.5rem, 10vw, 7rem);
   line-height: 0.95;
   letter-spacing: -0.02em;
-  color: var(--color-jacquard-cream, #e8e0d0);
+  color: var(--color-jacquard-cream, #f0e6d2);
   text-shadow: 0 2px 4px rgba(10, 14, 26, 0.5);
 }
 
 .hero-role {
   font-family: var(--font-printer);
   font-size: clamp(0.85rem, 2vw, 1.05rem);
-  color: var(--color-jacquard-ink, #8b9bb4);
+  color: var(--color-jacquard-ink, #7d8fa3);
   letter-spacing: 0.08em;
   margin: 1.5rem 0 0.75rem;
 }
@@ -154,7 +154,7 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   line-height: 1.7;
-  color: var(--color-jacquard-ink, #8b9bb4);
+  color: var(--color-jacquard-ink, #7d8fa3);
   opacity: 0.65;
   white-space: pre-line;
   margin: 0 0 2.5rem;
@@ -178,7 +178,7 @@
 }
 
 .scroll-indicator:hover {
-  border-color: var(--color-jacquard-gold, #c9a84c);
+  border-color: var(--color-jacquard-gold, #cc9a2e);
   background: rgba(201, 168, 76, 0.06);
 }
 
@@ -187,13 +187,13 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
 }
 
 .scroll-arrow {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
   animation: arrow-bob 1.8s ease-in-out infinite;
 }
 
@@ -227,20 +227,20 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
 }
 
 .ledger-line {
   width: 40px;
   height: 1px;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
 }
 
 .motifs-title {
   font-family: var(--font-display, 'Playfair Display', serif);
   font-weight: 700;
   font-size: clamp(2rem, 5vw, 2.75rem);
-  color: var(--color-jacquard-cream, #e8e0d0);
+  color: var(--color-jacquard-cream, #f0e6d2);
   margin: 0 0 0.75rem;
   letter-spacing: -0.01em;
 }
@@ -250,7 +250,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
   opacity: 0.45;
 }
 
@@ -312,14 +312,14 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
   opacity: 0.2;
 }
 
 .footer-text {
   font-family: var(--font-printer);
   font-size: 0.75rem;
-  color: var(--color-jacquard-ink, #8b9bb4);
+  color: var(--color-jacquard-ink, #7d8fa3);
   opacity: 0.45;
   margin: 0 0 1.5rem;
 }
@@ -339,7 +339,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
   text-decoration: none;
   opacity: 0.5;
   transition: opacity 0.2s ease;
@@ -397,6 +397,6 @@
 
 .scroll-indicator:focus-visible,
 .footer-link:focus-visible {
-  outline: 2px solid var(--color-jacquard-gold, #c9a84c);
+  outline: 2px solid var(--color-jacquard-gold, #cc9a2e);
   outline-offset: 3px;
 }

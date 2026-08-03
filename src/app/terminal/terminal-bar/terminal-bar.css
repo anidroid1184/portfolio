@@ -27,7 +27,7 @@
   margin: 0;
   font-family: 'Courier Prime', monospace;
   font-size: 0.75rem;
-  color: #8B949E;
+  color: var(--color-jacquard-ink, #7d8fa3);
   animation: boot-fade-in 0.3s ease-out;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .boot-cursor {
-  color: #58A6FF;
+  color: var(--color-jacquard-gold, #cc9a2e);
   animation: cursor-blink 0.8s steps(2, start) infinite;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .feedback-text {
-  color: #C9D1D9;
+  color: var(--color-jacquard-cream, #f0e6d2);
   font-size: 0.75rem;
   font-family: 'Courier Prime', monospace;
 }
@@ -69,7 +69,7 @@
 }
 
 .prompt-text {
-  color: #58A6FF;
+  color: var(--color-jacquard-gold, #cc9a2e);
   font-size: 0.875rem;
   font-weight: bold;
   white-space: nowrap;
@@ -80,20 +80,20 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #F0F6FC;
+  color: var(--color-jacquard-cream, #f0e6d2);
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.875rem;
   padding: 0.25rem 0;
 }
 
 .command-input::placeholder {
-  color: #8B949E;
+  color: var(--color-jacquard-ink, #7d8fa3);
 }
 
 .help-btn {
   background: transparent;
   border: none;
-  color: #8B949E;
+  color: var(--color-jacquard-ink, #7d8fa3);
   cursor: pointer;
   padding: 0.25rem;
   display: flex;
@@ -103,12 +103,12 @@
 }
 
 .help-btn:hover {
-  color: #58A6FF;
+  color: var(--color-jacquard-gold, #cc9a2e);
 }
 
 .help-btn:focus-visible,
 .command-input:focus-visible {
-  outline: 2px solid #58A6FF;
+  outline: 2px solid var(--color-jacquard-gold, #cc9a2e);
   outline-offset: 2px;
 }
 
@@ -132,11 +132,11 @@
   align-items: center;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid #30363D;
+  border-bottom: 1px solid rgba(204, 154, 46, 0.12);
 }
 
 .help-title {
-  color: #58A6FF;
+  color: var(--color-jacquard-gold, #cc9a2e);
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -146,7 +146,7 @@
 .help-close {
   background: none;
   border: none;
-  color: #8B949E;
+  color: var(--color-jacquard-ink, #7d8fa3);
   font-size: 1.25rem;
   cursor: pointer;
   padding: 0;
@@ -154,7 +154,7 @@
 }
 
 .help-close:hover {
-  color: #F0F6FC;
+  color: var(--color-jacquard-cream, #f0e6d2);
 }
 
 .help-list {
@@ -182,14 +182,14 @@
 }
 
 .help-command {
-  color: #58A6FF;
+  color: var(--color-jacquard-gold, #cc9a2e);
   font-size: 0.75rem;
   font-weight: bold;
   min-width: 120px;
 }
 
 .help-description {
-  color: #C9D1D9;
+  color: var(--color-jacquard-cream, #f0e6d2);
   font-size: 0.75rem;
 }
 

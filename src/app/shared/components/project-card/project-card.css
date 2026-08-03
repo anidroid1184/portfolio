@@ -36,7 +36,7 @@
   background-image:
     radial-gradient(
       circle,
-      var(--card-accent, var(--color-jacquard-gold, #c9a84c)) 1.5px,
+      var(--card-accent, var(--color-jacquard-gold, #cc9a2e)) 1.5px,
       transparent 1.5px
     );
   background-size: 10px 10px;
@@ -65,7 +65,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--card-accent, var(--color-jacquard-gold, #c9a84c));
+  background: var(--card-accent, var(--color-jacquard-gold, #cc9a2e));
   opacity: 0.2;
   transition: opacity 0.3s ease;
 }
@@ -96,12 +96,12 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--card-accent, var(--color-jacquard-gold, #c9a84c));
+  color: var(--card-accent, var(--color-jacquard-gold, #cc9a2e));
   opacity: 0.5;
 }
 
 .motif-icon {
-  --icon-color: var(--color-jacquard-gold, #c9a84c);
+  --icon-color: var(--color-jacquard-gold, #cc9a2e);
 
   width: 44px;
   height: 44px;
@@ -115,7 +115,7 @@
 
 .motif-icon .material-symbols-outlined {
   font-size: 1.5rem;
-  color: var(--icon-color, var(--color-jacquard-gold, #c9a84c));
+  color: var(--icon-color, var(--color-jacquard-gold, #cc9a2e));
   opacity: 0.6;
 }
 
@@ -124,7 +124,7 @@
   font-weight: 700;
   font-size: 1.35rem;
   line-height: 1.15;
-  color: var(--color-jacquard-cream, #e8e0d0);
+  color: var(--color-jacquard-cream, #f0e6d2);
   margin: 0 0 0.75rem;
   letter-spacing: -0.01em;
 }
@@ -133,8 +133,8 @@
   font-family: var(--font-printer);
   font-size: 0.82rem;
   line-height: 1.55;
-  color: var(--color-jacquard-ink, #8b9bb4);
-  border-left: 2px solid var(--card-accent, var(--color-jacquard-gold, #c9a84c));
+  color: var(--color-jacquard-ink, #7d8fa3);
+  border-left: 2px solid var(--card-accent, var(--color-jacquard-gold, #cc9a2e));
   padding-left: 0.75rem;
   margin: 0 0 1rem;
 }
@@ -147,7 +147,7 @@
 }
 
 .thread-tag {
-  --thread-color: var(--color-jacquard-gold, #c9a84c);
+  --thread-color: var(--color-jacquard-gold, #cc9a2e);
 
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -156,7 +156,7 @@
   padding: 0.25rem 0.55rem;
   border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: 1px;
-  color: var(--thread-color, var(--color-jacquard-gold, #c9a84c));
+  color: var(--thread-color, var(--color-jacquard-gold, #cc9a2e));
   background: rgba(201, 168, 76, 0.04);
   transition:
     border-color 0.2s ease,
@@ -164,7 +164,7 @@
 }
 
 .thread-tag:hover {
-  border-color: var(--color-jacquard-gold, #c9a84c);
+  border-color: var(--color-jacquard-gold, #cc9a2e);
   background: rgba(201, 168, 76, 0.1);
 }
 
@@ -172,7 +172,7 @@
   font-family: var(--font-printer);
   font-size: 0.78rem;
   line-height: 1.5;
-  color: var(--color-jacquard-ink, #8b9bb4);
+  color: var(--color-jacquard-ink, #7d8fa3);
   opacity: 0.7;
   margin: 0 0 1.5rem;
 }
@@ -194,7 +194,7 @@
   padding: 0.5rem 0.85rem;
   border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: 1px;
-  color: var(--color-jacquard-gold, #c9a84c);
+  color: var(--color-jacquard-gold, #cc9a2e);
   text-decoration: none;
   transition:
     border-color 0.2s ease,
@@ -204,9 +204,9 @@
 }
 
 .motif-action:hover {
-  border-color: var(--color-jacquard-gold, #c9a84c);
+  border-color: var(--color-jacquard-gold, #cc9a2e);
   background: rgba(201, 168, 76, 0.08);
-  color: var(--color-jacquard-gold-bright, #f0d060);
+  color: var(--color-jacquard-gold-bright, #e8b840);
 }
 
 .motif-action--primary {
@@ -215,9 +215,9 @@
 }
 
 .motif-action--primary:hover {
-  background: var(--color-jacquard-gold, #c9a84c);
-  color: var(--color-jacquard-ground, #0a0e1a);
-  border-color: var(--color-jacquard-gold, #c9a84c);
+  background: var(--color-jacquard-gold, #cc9a2e);
+  color: var(--color-jacquard-ground, #070c17);
+  border-color: var(--color-jacquard-gold, #cc9a2e);
 }
 
 .motif-action .material-symbols-outlined {

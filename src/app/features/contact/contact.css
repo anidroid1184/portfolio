@@ -156,7 +156,7 @@
 }
 
 .contact-input.ng-invalid.ng-touched {
-  border-color: var(--color-jacquard-crimson, #b33a2e);
+  border-color: var(--color-jacquard-crimson, #e0554a);
 }
 
 .contact-textarea {
