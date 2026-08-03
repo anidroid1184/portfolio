@@ -1,0 +1,154 @@
+.exp-page {
+  padding: 3rem 2rem 4rem;
+  max-width: min(800px, 92%);
+  margin: 0 auto;
+}
+
+.exp-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.exp-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 3.75rem);
+  color: var(--color-jacquard-cream, #f0e6d2);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.exp-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--color-jacquard-gold, #cc9a2e);
+  opacity: 0.5;
+  margin: 0;
+}
+
+.exp-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.exp-section-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-section-icon {
+  font-size: 1.5rem;
+  color: var(--color-jacquard-gold, #cc9a2e);
+  opacity: 0.5;
+}
+
+.exp-section-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--color-jacquard-cream, #f0e6d2);
+  margin: 0;
+}
+
+.exp-list {
+  position: relative;
+}
+
+.exp-item {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+.exp-item-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-jacquard-gold, #cc9a2e);
+  margin-top: 0.35rem;
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+.exp-item-line {
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(204, 154, 46, 0.12);
+}
+
+.exp-item-content {
+  flex: 1;
+  padding-left: 0;
+}
+
+.exp-item-period {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-jacquard-gold, #cc9a2e);
+  opacity: 0.5;
+}
+
+.exp-item-role {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-jacquard-cream, #f0e6d2);
+  margin: 0.25rem 0 0.15rem;
+}
+
+.exp-item-company {
+  font-family: var(--font-printer);
+  font-size: 0.8rem;
+  color: var(--color-jacquard-ink, #7d8fa3);
+  margin: 0 0 0.5rem;
+}
+
+.exp-item-desc {
+  font-family: var(--font-printer);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-jacquard-ink, #7d8fa3);
+  opacity: 0.8;
+  margin: 0 0 0.75rem;
+}
+
+.exp-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.exp-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(204, 154, 46, 0.15);
+  border-radius: 1px;
+  color: var(--color-jacquard-gold, #cc9a2e);
+  background: rgba(204, 154, 46, 0.04);
+}
+
+@media (max-width: 640px) {
+  .exp-page {
+    padding: 2rem 1rem 3rem;
+  }
+}

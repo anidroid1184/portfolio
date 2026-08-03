@@ -1,41 +1,103 @@
-<footer id="contact" class="section-shell pb-8 pt-3">
-  <div class="border-l-4 border-highlight-red pl-8 mb-12">
-    <h1
-      class="text-3xl md:text-4xl font-bold font-mono uppercase tracking-widest text-highlight-red mb-3"
-    >
-      DATA_CORE / COMMS_LOG
-    </h1>
-    <p class="text-sm font-printer opacity-60">ESTABLISHING SECURE CONNECTION...</p>
+<form class="contact-page" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="contact-hero">
+    <h1 class="contact-title">Contacto</h1>
+    <p class="contact-subtitle">ESTABLISHING_SECURE_LINK</p>
   </div>
 
-  <div
-    class="punch-card bg-card-cream text-card-ink p-5 md:p-6 filing-shadow border-b-8 border-card-ink/5 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-  >
-    <div>
-      <p class="text-card-ink font-semibold font-mono text-lg uppercase tracking-tight">
-        Juan Sebastián Valencia Londoño
-      </p>
-      <p class="text-sm font-printer text-card-ink/70 mt-1">
-        Junior Backend Developer · Python · FastAPI · Django
-      </p>
+  <div class="contact-grid">
+    <div class="contact-info-card">
+      <h2 class="contact-card-title">Canales</h2>
+      <div class="contact-links">
+        <a
+          class="contact-link-item"
+          href="https://github.com/LondoDev"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="material-symbols-outlined">code</span>
+          <div>
+            <strong>GitHub</strong>
+            <span>github.com/LondoDev</span>
+          </div>
+          <span class="contact-link-arrow material-symbols-outlined">arrow_outward</span>
+        </a>
+        <a
+          class="contact-link-item"
+          href="https://linkedin.com/in/LondoDev"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="material-symbols-outlined">link</span>
+          <div>
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/in/LondoDev</span>
+          </div>
+          <span class="contact-link-arrow material-symbols-outlined">arrow_outward</span>
+        </a>
+        <a class="contact-link-item" href="mailto:contacto@sebastian.dev">
+          <span class="material-symbols-outlined">mail</span>
+          <div>
+            <strong>Email</strong>
+            <span>contacto&#64;sebastian.dev</span>
+          </div>
+          <span class="contact-link-arrow material-symbols-outlined">arrow_outward</span>
+        </a>
+      </div>
     </div>
 
-    <div class="flex flex-wrap items-center gap-3 text-sm">
-      <a
-        class="contact-link-punch"
-        href="https://linkedin.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >LinkedIn</a
+    <div class="contact-form-card">
+      <h2 class="contact-card-title">Enviar mensaje</h2>
+
+      <div class="contact-field">
+        <label class="contact-label" for="name">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          class="contact-input"
+          formControlName="name"
+          placeholder="Tu nombre"
+          [attr.aria-invalid]="form.get('name')?.invalid && form.get('name')?.touched"
+        />
+      </div>
+
+      <div class="contact-field">
+        <label class="contact-label" for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          class="contact-input"
+          formControlName="email"
+          placeholder="tu@email.com"
+          [attr.aria-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+        />
+      </div>
+
+      <div class="contact-field">
+        <label class="contact-label" for="message">Mensaje</label>
+        <textarea
+          id="message"
+          class="contact-input contact-textarea"
+          formControlName="message"
+          placeholder="¿En qué proyecto querés trabajar?"
+          rows="4"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="contact-submit"
+        [disabled]="form.invalid || form.pristine"
       >
-      <a
-        class="contact-link-punch"
-        href="https://github.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        >GitHub</a
-      >
-      <a class="contact-link-punch" href="mailto:juan.sebastian@example.com">Correo</a>
+        <span class="material-symbols-outlined">send</span>
+        Enviar mensaje
+      </button>
+
+      @if (submitted) {
+        <p class="contact-success">
+          <span class="material-symbols-outlined">check_circle</span>
+          Mensaje enviado. ¡Gracias!
+        </p>
+      }
     </div>
   </div>
-</footer>
+</form>

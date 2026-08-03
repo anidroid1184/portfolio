@@ -1,57 +1,52 @@
-<section id="about" class="section-shell pb-12 md:pb-16">
-  <div class="border-l-4 border-highlight-red pl-8 mb-12">
-    <h1
-      class="text-3xl md:text-4xl font-bold font-mono uppercase tracking-widest text-highlight-red mb-3"
-    >
-      DATA_CORE / PERSONAL_DATA
-    </h1>
-    <p class="text-sm font-printer opacity-60">
-      OPERATOR PROFILE LOADED... DISPLAYING IDENTITY MATRIX...
-    </p>
+<section class="about-page">
+  <div class="about-hero">
+    <div class="about-warp" aria-hidden="true">
+      @for (_ of [].constructor(10); track $index) {
+        <span class="about-thread" [style.animation-delay.ms]="$index * 80"></span>
+      }
+    </div>
+    <h1 class="about-title">Quién soy</h1>
+    <p class="about-subtitle">IDENTITY_MATRIX_LOADED</p>
   </div>
 
-  <article class="punch-card bg-card-cream text-card-ink p-5 md:p-7 filing-shadow about-layout">
-    <div>
-      <h3
-        class="about-hook text-xl font-bold font-mono uppercase tracking-tight text-card-ink mb-4"
-      >
-        Ingeniero Electrónico & Backend Developer especializado en sistemas de alto rendimiento y
-        soluciones IoT.
-      </h3>
-      <ul class="about-value-list space-y-3">
-        <li class="flex items-start gap-3">
-          <span class="text-highlight-red font-bold">▸</span>
-          <span class="font-printer text-sm"
-            ><strong class="text-card-ink">Freelance con propósito:</strong> +10 proyectos
-            entregados, desde e-commerce hasta gestión industrial.</span
-          >
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="text-highlight-red font-bold">▸</span>
-          <span class="font-printer text-sm"
-            ><strong class="text-card-ink">Arquitecto de Software:</strong> Fundador de Rootwave,
-            transformando ideas en productos digitales escalables.</span
-          >
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="text-highlight-red font-bold">▸</span>
-          <span class="font-printer text-sm"
-            ><strong class="text-card-ink">Mentor Técnico:</strong> pasión por simplificar lo
-            complejo y compartir conocimiento técnico.</span
-          >
-        </li>
-      </ul>
+  <article class="about-card">
+    <div class="about-avatar-area">
+      <div class="about-avatar-frame">
+        <span class="material-symbols-outlined about-avatar-icon">person</span>
+      </div>
+      <span class="about-status" aria-hidden="true"></span>
     </div>
 
-    <aside class="quick-stats" aria-label="Quick stats">
-      <h4 class="text-[10px] font-bold uppercase tracking-[0.2em] font-mono opacity-50 mb-3">
-        Quick Stats
-      </h4>
-      <div class="flex flex-wrap gap-2">
-        <div class="pill">Univalle · 9no semestre</div>
-        <div class="pill">English B2</div>
-        <div class="pill">10+ proyectos freelance</div>
+    <div class="about-body">
+      <p class="about-hook">
+        Ingeniero Electrónico &amp; Backend Developer — construyo sistemas que escalan, APIs que
+        responden en milisegundos, y soluciones que resuelven problemas reales.
+      </p>
+
+      <ul class="about-values">
+        <li class="about-value">
+          <span class="about-bullet"></span>
+          <span><strong>Freelance con propósito:</strong> +10 proyectos entregados, desde e-commerce
+          hasta plataformas de gestión industrial.</span>
+        </li>
+        <li class="about-value">
+          <span class="about-bullet"></span>
+          <span><strong>Contribuidor open source:</strong> PRs aceptadas en proyectos de la
+          comunidad. Código que otros leen, usan y mejoran.</span>
+        </li>
+        <li class="about-value">
+          <span class="about-bullet"></span>
+          <span><strong>Mentor técnico:</strong> pasión por simplificar lo complejo y compartir
+          conocimiento. Enseñar es la mejor forma de aprender.</span>
+        </li>
+      </ul>
+
+      <div class="about-pills">
+        <div class="about-pill">Univalle · 9no semestre</div>
+        <div class="about-pill">English B2</div>
+        <div class="about-pill">10+ proyectos freelance</div>
+        <div class="about-pill">Python & Go</div>
       </div>
-    </aside>
+    </div>
   </article>
 </section>

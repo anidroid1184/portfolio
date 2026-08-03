@@ -259,48 +259,29 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  align-items: stretch;
 }
 
-.motifs-grid app-project-card {
+.motifs-grid > * {
   opacity: 0;
-}
-
-.motifs-grid--revealed app-project-card {
-  animation: motif-enter 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateX(var(--slide-from, 40px));
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Even cards from left, odd from right */
-.motifs-grid--revealed app-project-card:nth-child(even) {
+.motifs-grid > :nth-child(even) {
   --slide-from: -40px;
 }
 
-.motifs-grid--revealed app-project-card:nth-child(odd) {
+.motifs-grid > :nth-child(odd) {
   --slide-from: 40px;
 }
 
-.motifs-grid--revealed app-project-card:nth-child(1) { animation-delay: 0ms; }
-.motifs-grid--revealed app-project-card:nth-child(2) { animation-delay: 100ms; }
-.motifs-grid--revealed app-project-card:nth-child(3) { animation-delay: 200ms; }
-.motifs-grid--revealed app-project-card:nth-child(4) { animation-delay: 300ms; }
-.motifs-grid--revealed app-project-card:nth-child(5) { animation-delay: 400ms; }
-.motifs-grid--revealed app-project-card:nth-child(6) { animation-delay: 500ms; }
-.motifs-grid--revealed app-project-card:nth-child(7) { animation-delay: 600ms; }
-.motifs-grid--revealed app-project-card:nth-child(8) { animation-delay: 700ms; }
-
-@keyframes motif-enter {
-  from {
-    opacity: 0;
-    transform: translateX(var(--slide-from, 40px));
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes motif-enter-reduced {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.motif-visible {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
 @media (min-width: 800px) {
@@ -311,7 +292,7 @@
 
 @media (min-width: 1100px) {
   .motifs-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -407,8 +388,10 @@
     opacity: 1;
   }
 
-  .motifs-grid--revealed app-project-card {
-    animation: motif-enter-reduced 0.001ms forwards;
+  .motifs-grid > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

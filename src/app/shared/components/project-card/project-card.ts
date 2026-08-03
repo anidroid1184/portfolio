@@ -11,6 +11,7 @@ export type MotifProject = {
   accentColor: string;
   sourceUrl: string;
   demoUrl?: string;
+  screenshotUrl?: string;
 };
 
 @Component({

@@ -5,6 +5,14 @@
 >
   <div class="motif-perforations" aria-hidden="true"></div>
   <div class="motif-weave-pattern" aria-hidden="true"></div>
+
+  @if (project().screenshotUrl) {
+    <div class="motif-screenshot">
+      <img [src]="project().screenshotUrl" [alt]="'Screenshot of ' + project().name" loading="lazy" />
+      <div class="motif-screenshot-overlay" aria-hidden="true"></div>
+    </div>
+  }
+
   <div class="motif-content">
     <div class="motif-head">
       <span class="motif-index">{{ project().index }}</span>

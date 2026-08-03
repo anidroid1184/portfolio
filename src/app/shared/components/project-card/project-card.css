@@ -1,16 +1,18 @@
 /* Project Card — Jacquard Brocade motif */
 .motif-card {
-  --card-accent: var(--color-jacquard-gold, #c9a84c);
+  --card-accent: var(--color-jacquard-gold, #cc9a2e);
 
   position: relative;
-  background: var(--color-jacquard-warp, #11151e);
-  border: 1px solid rgba(201, 168, 76, 0.12);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-jacquard-warp, #0e1320);
+  border: 1px solid rgba(204, 154, 46, 0.12);
   border-radius: 2px;
   overflow: hidden;
   transition:
     border-color 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
+    box-shadow 0.3s ease;
 }
 
 .motif-card:hover {
@@ -75,7 +77,10 @@
 .motif-content {
   position: relative;
   z-index: 1;
-  padding: 2rem 1.5rem 1.75rem;
+  padding: 1.5rem 1.5rem 1.75rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .motif-head {
@@ -220,6 +225,35 @@
 }
 
 .motif-action:focus-visible {
-  outline: 2px solid var(--color-jacquard-gold, #c9a84c);
+  outline: 2px solid var(--color-jacquard-gold, #cc9a2e);
   outline-offset: 3px;
+}
+
+/* ---- Screenshot ---- */
+.motif-screenshot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-jacquard-ground, #070c17);
+  border-bottom: 1px solid rgba(204, 154, 46, 0.08);
+}
+
+.motif-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.motif-screenshot-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(204, 154, 46, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.motif-card:hover .motif-screenshot-overlay {
+  background: rgba(7, 12, 23, 0.15);
 }
