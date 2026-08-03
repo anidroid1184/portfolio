@@ -14,11 +14,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render portfolio hero hierarchy', async () => {
+  it('should render router outlet for lazy-loaded routes', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Construyo infraestructuras escalables y APIs de alto rendimiento.');
-    expect(compiled.querySelector('h2')?.textContent).toContain('Juan Sebastián Valencia Londoño');
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });

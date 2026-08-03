@@ -1,46 +1,55 @@
-<footer class="terminal-bar">
-  <!-- Help overlay -->
+<footer class="terminal-bar" [class.terminal-bar--full]="!sidebarOpen()">
   @if (terminalCommandService.isHelpVisible()) {
     <div class="help-overlay">
       <div class="help-content">
         <div class="help-header">
-          <span class="help-title">Available Commands</span>
-          <button class="help-close" (click)="toggleHelp()" aria-label="Close help">×</button>
+          <span class="help-title">{{ i18n.t('terminal.help.title') }}</span>
+          <button class="help-close" (click)="toggleHelp()" [attr.aria-label]="i18n.t('terminal.help.close')">×</button>
         </div>
         <div class="help-list">
-          @for (cmd of terminalCommandService.availableCommands; track cmd.name) {
-            <button class="help-item" (click)="executeCommand(cmd.name)">
-              <code class="help-command">{{ cmd.name }}</code>
-              <span class="help-description">{{ cmd.description }}</span>
-            </button>
+          @for (section of terminalCommandService.sections; track section.key) {
+            <div class="help-section-label">{{ section.label }}</div>
+            @for (cmd of commandsInSection(section.key); track cmd.name) {
+              <button class="help-item" (click)="executeCommand(cmd.name.split(' ')[0])">
+                <code class="help-command">{{ cmd.name }}</code>
+                <span class="help-description">{{ cmd.description }}</span>
+                <span class="help-key-hint">↵</span>
+              </button>
+            }
           }
         </div>
       </div>
     </div>
   }
 
-  <!-- Feedback area -->
-  @if (terminalCommandService.lastFeedback()) {
-    <div class="feedback">
-      <span class="feedback-text">{{ terminalCommandService.lastFeedback() }}</span>
+  @if (!bootDone) {
+    <div class="boot-sequence">
+      @for (line of bootLines; track line) {
+        <p class="boot-line">{{ line }}</p>
+      }
+      <p class="boot-line boot-cursor">_</p>
+    </div>
+  } @else {
+    @if (terminalCommandService.lastFeedback()) {
+      <div class="feedback">
+        <span class="feedback-text">{{ terminalCommandService.lastFeedback() }}</span>
+      </div>
+    }
+
+    <div class="input-area">
+      <span class="prompt-text">&gt;</span>
+      <input
+        type="text"
+        [value]="inputValue"
+        (input)="inputValue = ($any($event.target).value)"
+        (keydown)="onKeyDown($event)"
+        class="command-input"
+        [placeholder]="i18n.t('terminal.placeholder')"
+        aria-label="Terminal command input"
+      />
+      <button class="help-btn" (click)="toggleHelp()" aria-label="Mostrar ayuda">
+        <span class="material-symbols-outlined">help_outline</span>
+      </button>
     </div>
   }
-
-  <!-- Command input -->
-  <div class="input-area">
-    <span class="prompt-text">OPERATOR@ARCHIVE:~$</span>
-    <input
-      type="text"
-      [value]="inputValue"
-      (input)="inputValue = $event.target.value"
-      (keydown)="onKeyDown($event)"
-      class="command-input"
-      placeholder="Type 'help' for commands"
-      aria-label="Terminal command input"
-    />
-    <span class="material-symbols-outlined prompt-cursor blink">_</span>
-    <button class="help-btn" (click)="toggleHelp()" aria-label="Show help">
-      <span class="material-symbols-outlined text-sm">help_outline</span>
-    </button>
-  </div>
 </footer>

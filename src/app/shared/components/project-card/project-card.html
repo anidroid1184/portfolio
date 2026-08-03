@@ -1,0 +1,47 @@
+<article
+  class="motif-card"
+  [class.motif-card--featured]="project().featured"
+  [style.--card-accent]="project().accentColor"
+>
+  <div class="motif-perforations" aria-hidden="true"></div>
+  <div class="motif-weave-pattern" aria-hidden="true"></div>
+  <div class="motif-content">
+    <div class="motif-head">
+      <span class="motif-index">{{ project().index }}</span>
+      <div class="motif-icon" [style.--icon-color]="project().accentColor">
+        <span class="material-symbols-outlined">{{ project().icon }}</span>
+      </div>
+    </div>
+    <h3 class="motif-name">{{ project().name }}</h3>
+    <p class="motif-quote">"{{ project().description }}"</p>
+    <div class="motif-threads">
+      @for (tech of project().stack; track tech) {
+        <span class="thread-tag" [style.--thread-color]="project().accentColor">{{ tech }}</span>
+      }
+    </div>
+    <p class="motif-impact">{{ project().impact }}</p>
+    <div class="motif-actions">
+      <a
+        class="motif-action motif-action--primary"
+        [href]="project().sourceUrl"
+        target="_blank"
+        rel="noopener"
+      >
+        <span class="material-symbols-outlined">code</span>
+        Ver código
+      </a>
+      @if (project().demoUrl) {
+        <a
+          class="motif-action"
+          [href]="project().demoUrl"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="material-symbols-outlined">open_in_new</span>
+          Demo
+        </a>
+      }
+    </div>
+  </div>
+  <div class="motif-selvedge" aria-hidden="true"></div>
+</article>

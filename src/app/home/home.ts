@@ -1,65 +1,116 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { TerminalCommandService } from '../terminal/services/terminal-command.service';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { Component, inject, AfterViewInit, OnDestroy } from '@angular/core';
+import { ProjectCard, type MotifProject } from '../shared/components/project-card/project-card';
+import { I18nService } from '../core/services/i18n/i18n.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule],
+  imports: [ProjectCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
-  animations: [
-    trigger('fadeInUp', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(20px)' }),
-        animate(
-          '400ms cubic-bezier(0.16, 1, 0.3, 1)',
-          style({ opacity: 1, transform: 'translateY(0)' }),
-        ),
-      ]),
-    ]),
-  ],
 })
-export class Home implements OnInit, OnDestroy {
-  showTypedText = false;
-  showOutput = false;
-  showHint = false;
-  private timeoutIds: any[] = [];
+export class Home implements AfterViewInit, OnDestroy {
+  readonly i18n = inject(I18nService);
 
-  constructor(
-    private router: Router,
-    private terminalCommandService: TerminalCommandService,
-  ) {}
+  readonly projects: MotifProject[] = [
+    {
+      name: 'Attendance System',
+      index: '001-A',
+      featured: true,
+      description: 'Sistema de control de asistencia con API y gestión de registros.',
+      impact:
+        'Optimicé consultas de asistencia reduciendo la latencia de respuesta en un 40%.',
+      stack: ['FastAPI', 'Redis', 'PostgreSQL', 'Docker'],
+      icon: 'fingerprint',
+      accentColor: '#cc9a2e',
+      sourceUrl: 'https://github.com',
+      demoUrl: 'https://example.com',
+    },
+    {
+      name: 'Palette ID',
+      index: '002-B',
+      description: 'Identificación de paletas desde imágenes para análisis visual.',
+      impact:
+        'Reduje el tiempo de extracción de paleta para prototipos de branding visual.',
+      stack: ['Python', 'OpenCV', 'FastAPI'],
+      icon: 'palette',
+      accentColor: '#e8b840',
+      sourceUrl: 'https://github.com',
+    },
+    {
+      name: 'Auth Service',
+      index: '003-C',
+      description: 'Gestión de usuarios y roles con enfoque en rendimiento y seguridad.',
+      impact:
+        'Diseñé RBAC simple y mantenible para acelerar el desarrollo de nuevas features.',
+      stack: ['Go', 'REST', 'JWT', 'PostgreSQL'],
+      icon: 'lock',
+      accentColor: '#cc9a2e',
+      sourceUrl: 'https://github.com',
+    },
+    {
+      name: 'Node Redactor',
+      index: '004-D',
+      description:
+        'Automatización de enmascaramiento de datos PII con procesamiento en streaming.',
+      impact:
+        'Eliminé riesgo de exposición de datos sensibles en pipelines de logging.',
+      stack: ['Go', 'Kafka', 'Redis'],
+      icon: 'ink_eraser',
+      accentColor: '#b8943f',
+      sourceUrl: 'https://github.com',
+    },
+    {
+      name: 'Grid Monitor',
+      index: '005-E',
+      description: 'Visualización y análisis de paquetes de red en tiempo real.',
+      impact: 'Reduje el tiempo de diagnóstico de incidencias de red en un 60%.',
+      stack: ['Python', 'WebSocket', 'D3.js'],
+      icon: 'monitoring',
+      accentColor: '#cc9a2e',
+      sourceUrl: 'https://github.com',
+    },
+    {
+      name: 'Log Parser',
+      index: '006-F',
+      description: 'Middleware de agregación y búsqueda de logs distribuidos.',
+      impact: 'Centralicé +500GB diarios de logs con queries sub-100ms.',
+      stack: ['Go', 'Elasticsearch', 'gRPC'],
+      icon: 'data_object',
+      accentColor: '#e8b840',
+      sourceUrl: 'https://github.com',
+    },
+  ];
 
-  ngOnInit(): void {
-    // Typing animation sequence
-    this.timeoutIds.push(
-      setTimeout(() => {
-        this.showTypedText = true;
-      }, 600),
+  private _observer?: IntersectionObserver;
+
+  ngAfterViewInit(): void {
+    this._observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const grid = entry.target as HTMLElement;
+            grid.classList.add('motifs-grid--revealed');
+            this._observer?.unobserve(grid);
+          }
+        }
+      },
+      { threshold: 0.15 },
     );
-    this.timeoutIds.push(
-      setTimeout(() => {
-        this.showOutput = true;
-      }, 1800),
-    );
-    this.timeoutIds.push(
-      setTimeout(() => {
-        this.showHint = true;
-      }, 2500),
-    );
+
+    const grid = document.querySelector('.motifs-grid');
+    if (grid) {
+      this._observer.observe(grid);
+    }
   }
 
   ngOnDestroy(): void {
-    this.timeoutIds.forEach((id) => clearTimeout(id));
+    this._observer?.disconnect();
   }
 
-  executeCommand(command: string): void {
-    this.terminalCommandService.executeCommand(command);
-  }
-
-  dismissHint(): void {
-    this.showHint = false;
+  scrollToProjects(): void {
+    const el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }

@@ -1,0 +1,7 @@
+[tools]
+python = "3.12"
+node = "lts"
+uv = "latest"
+
+[env]
+VIRTUAL_ENV = ".venv"
