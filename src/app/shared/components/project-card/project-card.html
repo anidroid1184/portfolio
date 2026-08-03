@@ -29,15 +29,17 @@
     </div>
     <p class="motif-impact">{{ project().impact }}</p>
     <div class="motif-actions">
-      <a
-        class="motif-action motif-action--primary"
-        [href]="project().sourceUrl"
-        target="_blank"
-        rel="noopener"
-      >
-        <span class="material-symbols-outlined">code</span>
-        Ver código
-      </a>
+      @if (project().sourceUrl) {
+        <a
+          class="motif-action motif-action--primary"
+          [href]="project().sourceUrl"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="material-symbols-outlined">code</span>
+          Ver código
+        </a>
+      }
       @if (project().demoUrl) {
         <a
           class="motif-action"

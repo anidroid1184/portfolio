@@ -9,7 +9,7 @@ export type MotifProject = {
   stack: string[];
   icon: string;
   accentColor: string;
-  sourceUrl: string;
+  sourceUrl?: string;
   demoUrl?: string;
   screenshotUrl?: string;
 };
