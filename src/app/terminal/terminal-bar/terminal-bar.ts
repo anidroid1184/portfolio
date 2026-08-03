@@ -8,7 +8,7 @@ type BootLine = { text: string; delay: number };
 const BOOT_SEQUENCE: BootLine[] = [
   { text: 'INITIALIZING OPERATOR INTERFACE v8.5', delay: 250 },
   { text: 'MOUNTING FILESYSTEM... OK', delay: 350 },
-  { text: 'LOADING IDENTITY_MATRIX... OK', delay: 300 },
+  { text: 'Cargando telar...', delay: 300 },
   { text: 'CONNECTING TO ARCHIVE NODE... SECURE_LINK', delay: 400 },
   { text: 'RENDERING WOVEN PATTERNS... DONE', delay: 250 },
   { text: 'SYSTEM READY.', delay: 200 },
