@@ -1,13 +1,17 @@
 <div class="shell-container">
   <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
+  @if (sidebarOpen()) {
+    <div class="sidebar-backdrop" (click)="toggleSidebar()" (touchend)="toggleSidebar()" aria-hidden="true"></div>
+  }
+
   <aside
     class="sidebar sidebar-scroll"
     [class.sidebar--collapsed]="!sidebarOpen()"
     aria-label="Barra lateral con información de perfil y redes sociales"
   >
     <section class="sidebar-section border-b border-card-cream/10 bg-card-ink/20">
-      <h3 class="section-label">TELAR</h3>
+      <h3 class="section-label">londodev</h3>
       <div class="flex flex-col items-center gap-8">
         <div class="relative group">
           <div class="avatar-container">

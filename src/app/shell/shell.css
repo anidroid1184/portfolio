@@ -235,7 +235,20 @@
 }
 
 /* ---- Responsive ---- */
+.sidebar-backdrop {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 12, 23, 0.7);
+    z-index: 49;
+    cursor: pointer;
+  }
+
   .sidebar {
     position: fixed;
     left: 0;
@@ -247,5 +260,9 @@
 
   .sidebar--collapsed {
     left: -384px;
+  }
+
+  .toolbar-top {
+    z-index: 51;
   }
 }
