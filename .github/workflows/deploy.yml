@@ -20,7 +20,11 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      - run: npm run build -- --configuration production --base-href "/${{ github.event.repository.name }}/"
+
+      - run: cp dist/lading-portafolio/browser/index.html dist/lading-portafolio/browser/404.html
+
+      - run: touch dist/lading-portafolio/browser/.nojekyll
 
       - uses: peaceiris/actions-gh-pages@v4
         with:

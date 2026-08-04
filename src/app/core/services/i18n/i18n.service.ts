@@ -4,7 +4,7 @@ export type Lang = 'es' | 'en';
 
 const DICT: Record<Lang, Record<string, string>> = {
   es: {
-    'system.active': 'EN_TELAR',
+    'system.active': 'londodev',
     'hero.role': 'Embedded Systems & Firmware Engineer | Backend Developer Cloud',
     'hero.tagline': 'Cada línea de código es un hilo.\nCada sistema, un patrón tejido.',
     'hero.cta': 'Explorar el telar',
