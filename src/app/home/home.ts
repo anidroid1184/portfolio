@@ -128,7 +128,7 @@ export class Home implements AfterViewInit, OnDestroy {
     if (this.form.invalid) return;
     const { name, email, message } = this.form.value;
     const body = encodeURIComponent(message ?? '');
-    const mailto = `mailto:contacto@sebastian.dev?subject=Portafolio - ${encodeURIComponent(name ?? '')}&body=${body}%0A%0A— ${name} (${email})`;
+    const mailto = `mailto:valencialondonojuansebastian@gmail.com?subject=Portafolio - ${encodeURIComponent(name ?? '')}&body=${body}%0A%0A— ${name} (${email})`;
     window.location.href = mailto;
     this.submitted.set(true);
     this.form.reset();
