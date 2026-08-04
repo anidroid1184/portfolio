@@ -30,7 +30,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/lading-portafolio/",
+              "baseHref": "/portfolio/",
               "budgets": [
                 {
                   "type": "initial",
