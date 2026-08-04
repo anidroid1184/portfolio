@@ -1,11 +1,4 @@
 import { Injectable, signal } from '@angular/core';
-import { Router } from '@angular/router';
-
-export type CommandResult = {
-  type: 'navigate' | 'message' | 'error';
-  message?: string;
-  route?: string;
-};
 
 @Injectable({ providedIn: 'root' })
 export class TerminalCommandService {
@@ -13,125 +6,80 @@ export class TerminalCommandService {
   readonly historyIndex = signal<number>(-1);
   readonly lastFeedback = signal<string>('');
   readonly isHelpVisible = signal<boolean>(false);
+  readonly scrollTarget = signal<string | null>(null);
 
   readonly availableCommands = [
-    { name: 'whoami', description: 'Sobre mí / About me', route: '/whoami', section: 'nav' },
-    { name: 'home', description: 'Ir al inicio / Go home', route: '/home', section: 'nav' },
-    {
-      name: 'experience',
-      description: 'Experiencia / Experience',
-      route: '/experience',
-      section: 'nav',
-    },
-    { name: 'contact', description: 'Contacto / Contact', route: '/contact', section: 'nav' },
-    {
-      name: 'help',
-      description: 'Mostrar esta guía / Show this guide',
-      route: null,
-      section: 'info',
-    },
-    { name: 'clear', description: 'Limpiar terminal / Clear terminal', route: null, section: 'info' },
-    { name: 'date', description: 'Fecha actual / Current date', route: null, section: 'info' },
-    { name: 'sysinfo', description: 'Info del sistema / System info', route: null, section: 'info' },
-    { name: 'echo <msg>', description: 'Repetir mensaje / Echo message', route: null, section: 'info' },
+    { name: 'whoami', description: 'Sobre mí', scrollTo: 'about', section: 'nav' },
+    { name: 'home', description: 'Ir al inicio', scrollTo: 'top', section: 'nav' },
+    { name: 'experience', description: 'Experiencia', scrollTo: 'experience', section: 'nav' },
+    { name: 'projects', description: 'Proyectos', scrollTo: 'projects', section: 'nav' },
+    { name: 'contact', description: 'Contacto', scrollTo: 'contact', section: 'nav' },
+    { name: 'help', description: 'Mostrar esta guía', section: 'info' },
+    { name: 'clear', description: 'Limpiar terminal', section: 'info' },
+    { name: 'date', description: 'Fecha actual', section: 'info' },
+    { name: 'sysinfo', description: 'Info del sistema', section: 'info' },
+    { name: 'echo <msg>', description: 'Repetir mensaje', section: 'info' },
   ];
 
   readonly sections = [
-    { key: 'nav', label: '— NAVEGACIÓN / NAVIGATION —' },
-    { key: 'info', label: '— UTILIDADES / UTILITIES —' },
+    { key: 'nav', label: '— NAVEGACIÓN —' },
+    { key: 'info', label: '— UTILIDADES —' },
   ];
 
-  constructor(private router: Router) {}
-
-  executeCommand(input: string): CommandResult {
+  executeCommand(input: string): void {
     const trimmed = input.trim();
-    if (!trimmed) {
-      return { type: 'message', message: '' };
-    }
+    if (!trimmed) return;
 
-    this.commandHistory.update((history) => [...history, trimmed]);
+    this.commandHistory.update((h) => [...h, trimmed]);
     this.historyIndex.set(this.commandHistory().length);
     this.isHelpVisible.set(false);
+    this.scrollTarget.set(null);
 
-    const parts = trimmed.split(/\s+/);
-    const commandName = parts[0].toLowerCase();
+    const name = trimmed.split(/\s+/)[0].toLowerCase();
+    const cmd = this.availableCommands.find((c) => c.name.split(' ')[0] === name);
 
-    const result = this.resolveCommand(commandName, parts.slice(1));
-
-    if (result.type === 'navigate' && result.route) {
+    if (cmd && cmd.scrollTo) {
       this.lastFeedback.set(`> ${trimmed}`);
-      this.router.navigate([result.route]);
-    } else if (result.type === 'message') {
-      this.lastFeedback.set(result.message || '');
-    } else if (result.type === 'error') {
-      this.lastFeedback.set(
-        result.message ||
-          'Command not found. Type "help" for available commands.',
-      );
+      this.scrollTarget.set(cmd.scrollTo);
+      return;
     }
 
-    return result;
-  }
-
-  private resolveCommand(name: string, args: string[]): CommandResult {
-    const navMap: Record<string, string> = {
-      whoami: '/whoami',
-      experience: '/experience',
-      contact: '/contact',
-      home: '/home',
-      ls_experience: '/experience',
-    };
-
-    if (navMap[name]) {
-      return { type: 'navigate', route: navMap[name] };
+    if (name === 'help') {
+      this.isHelpVisible.set(true);
+      this.lastFeedback.set('Mostrando guía de comandos...');
+      return;
     }
 
-    switch (name) {
-      case 'help':
-      case '--help':
-        this.isHelpVisible.set(true);
-        return { type: 'message', message: 'Mostrando guía de comandos...' };
-
-      case 'clear':
-        this.lastFeedback.set('');
-        this.commandHistory.set([]);
-        return { type: 'message', message: '' };
-
-      case 'date':
-        return {
-          type: 'message',
-          message: `> ${new Date().toLocaleDateString('es-CO', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}`,
-        };
-
-      case 'sysinfo':
-        return {
-          type: 'message',
-          message: '> OPERATOR_INTERFACE v8.5 | Angular 21 | Node 24 | Jacquard Protocol',
-        };
-
-      case 'echo':
-        return { type: 'message', message: `> ${args.join(' ') || ''}` };
-
-      default:
-        return {
-          type: 'error',
-          message: `Command not found: "${name}". Type "help" to see available commands.`,
-        };
+    if (name === 'clear') {
+      this.lastFeedback.set('');
+      this.commandHistory.set([]);
+      return;
     }
+
+    if (name === 'date') {
+      this.lastFeedback.set(`> ${new Date().toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`);
+      return;
+    }
+
+    if (name === 'sysinfo') {
+      this.lastFeedback.set('> Jacquard Protocol | Angular 21 | Node 24 | Telar activo');
+      return;
+    }
+
+    if (name === 'echo') {
+      const msg = trimmed.split(/\s+/).slice(1).join(' ');
+      this.lastFeedback.set(`> ${msg || ''}`);
+      return;
+    }
+
+    this.lastFeedback.set(`Comando no encontrado: "${name}". Escribe "help" para ver los disponibles.`);
   }
 
   navigateHistory(direction: number): string {
     const history = this.commandHistory();
     if (history.length === 0) return '';
-
-    const newIndex = this.historyIndex() + direction;
-    const clamped = Math.max(0, Math.min(newIndex, history.length - 1));
-    this.historyIndex.set(clamped);
-    return history[clamped] || '';
+    const i = Math.max(0, Math.min(this.historyIndex() + direction, history.length - 1));
+    this.historyIndex.set(i);
+    return history[i] || '';
   }
 }

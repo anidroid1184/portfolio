@@ -1,15 +1,29 @@
-import { Component, inject, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, inject, AfterViewInit, OnDestroy, signal, effect } from '@angular/core';
 import { ProjectCard, type MotifProject } from '../shared/components/project-card/project-card';
 import { I18nService } from '../core/services/i18n/i18n.service';
+import { TerminalCommandService } from '../terminal/services/terminal-command.service';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { TerminalBar } from '../terminal/terminal-bar/terminal-bar';
 
 @Component({
   selector: 'app-home',
-  imports: [ProjectCard],
+  imports: [ProjectCard, ReactiveFormsModule, TerminalBar],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home implements AfterViewInit, OnDestroy {
   readonly i18n = inject(I18nService);
+  private _fb = inject(FormBuilder);
+  private _observer?: IntersectionObserver;
+  private _cmdService = inject(TerminalCommandService);
+
+  readonly submitted = signal(false);
+
+  readonly form = this._fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    message: ['', Validators.required],
+  });
 
   readonly projects: MotifProject[] = [
     {
@@ -69,44 +83,56 @@ export class Home implements AfterViewInit, OnDestroy {
     },
   ];
 
-  private _observer?: IntersectionObserver;
+  constructor() {
+    effect(() => {
+      const target = this._cmdService.scrollTarget();
+      if (target) this.scrollTo(target);
+    });
+  }
 
   ngAfterViewInit(): void {
     const grid = document.querySelector('.motifs-grid');
     if (!grid) return;
-
     const children = Array.from(grid.children) as HTMLElement[];
-    const total = children.length;
-
     this._observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           const host = entry.target as HTMLElement;
-          if (entry.isIntersecting) {
-            host.classList.add('motif-visible');
-          } else {
-            host.classList.remove('motif-visible');
-          }
+          if (entry.isIntersecting) host.classList.add('motif-visible');
+          else host.classList.remove('motif-visible');
         }
       },
       { threshold: 0.15 },
     );
-
-    for (let i = 0; i < total; i++) {
-      const from = i % 2 === 0 ? '-40px' : '40px';
-      children[i].style.setProperty('--slide-from', from);
-      this._observer.observe(children[i]);
-    }
+    children.forEach((child, i) => {
+      child.style.setProperty('--slide-from', i % 2 === 0 ? '-40px' : '40px');
+      this._observer!.observe(child);
+    });
   }
 
   ngOnDestroy(): void {
     this._observer?.disconnect();
   }
 
-  scrollToProjects(): void {
-    const el = document.getElementById('projects');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollTo(target: string): void {
+    if (target === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.querySelector('#' + target)?.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  onSubmit(): void {
+    if (this.form.invalid) return;
+    const { name, email, message } = this.form.value;
+    const body = encodeURIComponent(message ?? '');
+    const mailto = `mailto:contacto@sebastian.dev?subject=Portafolio - ${encodeURIComponent(name ?? '')}&body=${body}%0A%0A— ${name} (${email})`;
+    window.location.href = mailto;
+    this.submitted.set(true);
+    this.form.reset();
+  }
+
+  toggleLang(): void {
+    this.i18n.toggle();
   }
 }

@@ -1,32 +1,9 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'loading', pathMatch: 'full' },
-  {
-    path: 'loading',
-    loadComponent: () => import('./loading/loading').then((m) => m.Loading),
-  },
   {
     path: '',
-    loadComponent: () => import('./shell/shell').then((m) => m.Shell),
-    children: [
-      {
-        path: 'home',
-        loadComponent: () => import('./home/home').then((m) => m.Home),
-      },
-      {
-        path: 'whoami',
-        loadComponent: () => import('./features/about/about').then((m) => m.About),
-      },
-      {
-        path: 'experience',
-        loadComponent: () => import('./features/experience/experience').then((m) => m.Experience),
-      },
-      {
-        path: 'contact',
-        loadComponent: () => import('./features/contact/contact').then((m) => m.Contact),
-      },
-    ],
+    loadComponent: () => import('./home/home').then((m) => m.Home),
   },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: '' },
 ];
