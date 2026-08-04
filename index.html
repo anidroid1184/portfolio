@@ -25,5 +25,14 @@
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md.
     -->
     <app-root></app-root>
+    <script>
+      (function () {
+        var r = sessionStorage.getItem('redirect');
+        if (r) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', r);
+        }
+      })();
+    </script>
   <link rel="modulepreload" href="chunk-4ZWR5P7Z.js"><link rel="modulepreload" href="chunk-P3DOTNVC.js"><script src="main-TGP5XQKV.js" type="module"></script></body>
 </html>
