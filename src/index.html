@@ -34,5 +34,14 @@
       FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md.
     -->
     <app-root></app-root>
+    <script>
+      (function () {
+        var r = sessionStorage.getItem('redirect');
+        if (r) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', r);
+        }
+      })();
+    </script>
   </body>
 </html>
