@@ -6,9 +6,9 @@ type LoadingStage = {
 };
 
 const STAGES: LoadingStage[] = [
-  { message: 'Tensando urdimbre...' },
-  { message: 'Cruzando lanzadera...' },
-  { message: 'Tejido completo' },
+  { message: 'Tensioning warp threads...' },
+  { message: 'Crossing shuttle...' },
+  { message: 'Weave complete' },
 ];
 
 @Component({
