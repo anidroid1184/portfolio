@@ -1,273 +1,287 @@
 <div class="home-root">
-  <!-- Fixed nav -->
-  <nav class="home-nav" aria-label="Navegación principal">
-    <span class="home-nav-brand">londodev</span>
-    <div class="home-nav-links">
-      <button class="home-nav-link" (click)="scrollTo('about')">Quién soy</button>
-      <button class="home-nav-link" (click)="scrollTo('experience')">Experiencia</button>
-      <button class="home-nav-link" (click)="scrollTo('projects')">Proyectos</button>
-      <button class="home-nav-link" (click)="scrollTo('contact')">Contacto</button>
+  <!-- Sidebar -->
+  <aside
+    class="sidebar sidebar-scroll"
+    [class.sidebar--collapsed]="!sidebarOpen()"
+    aria-label="Barra lateral"
+  >
+    <section class="sidebar-section border-b border-card-cream/10 bg-card-ink/20">
+      <h3 class="section-label">londodev</h3>
+      <div class="flex flex-col items-center gap-8">
+        <div class="relative group">
+          <div class="avatar-container">
+            <img [src]="avatarUrl" alt="Foto de perfil de Sebastian" class="avatar-image" />
+          </div>
+          <div class="status-dot"></div>
+        </div>
+        <div class="w-full text-center space-y-2">
+          <div class="operator-id">Juan Sebastián</div>
+          <div class="flex justify-center items-center gap-3">
+            <span class="clearance-text">Backend Developer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sidebar-section flex-1">
+      <h3 class="section-label">TRAMA</h3>
+      <div class="space-y-6 font-printer">
+        <div class="space-y-4">
+          <a class="comms-link" href="https://github.com/LondoDev" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined">code</span>
+            <span>GitHub</span>
+          </a>
+          <a class="comms-link" href="https://linkedin.com/in/LondoDev" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined">link</span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+        <div class="pt-8 border-t border-card-cream/5">
+          <a class="emergency-email" href="mailto:contacto@sebastian.dev">contacto&#64;sebastian.dev</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="sidebar-footer">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e]"></span>
+        <span class="text-xs uppercase font-printer">Telar: activo</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Backdrop for mobile -->
+  @if (sidebarOpen()) {
+    <div class="sidebar-backdrop" (click)="toggleSidebar()" (touchend)="toggleSidebar()" aria-hidden="true"></div>
+  }
+
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Toolbar -->
+    <div class="toolbar-top">
       <button
-        class="home-nav-lang"
-        (click)="toggleLang()"
-        [attr.aria-label]="i18n.t(i18n.isEs() ? 'toolbar.lang.en' : 'toolbar.lang.es')"
+        class="toolbar-btn"
+        (click)="toggleSidebar()"
+        [attr.aria-label]="sidebarOpen() ? 'Ocultar barra lateral' : 'Mostrar barra lateral'"
       >
-        {{ i18n.isEs() ? 'EN' : 'ES' }}
+        <span class="material-symbols-outlined">{{ sidebarOpen() ? 'menu_open' : 'menu' }}</span>
+      </button>
+      <button class="toolbar-btn lang-toggle" (click)="toggleLang()" [attr.aria-label]="i18n.isEs() ? 'Switch to English' : 'Cambiar a español'">
+        <span class="lang-flag">{{ i18n.isEs() ? 'EN' : 'ES' }}</span>
       </button>
     </div>
-  </nav>
 
-  <!-- Loom Hero -->
-  <section class="loom-hero" id="top">
-    <div class="punch-card-edge" aria-hidden="true"></div>
-    <div class="warp-layer" aria-hidden="true">
-      @for (_ of [].constructor(24); track $index) {
-        <span class="warp-thread" [style.animation-delay.ms]="$index * 120"></span>
-      }
-    </div>
-    <div class="shuttle" aria-hidden="true">
-      <span class="shuttle-body"></span>
-      <span class="shuttle-trail"></span>
-    </div>
-    <div class="hero-content">
-      <p class="weave-label">
-        @for (char of i18n.t('system.active'); track $index) {
-          <span class="weave-char" [style.animation-delay.ms]="$index * 80">{{ char }}</span>
-        }
-      </p>
-      <h1 class="woven-name">
-        <span class="woven-line">Juan</span>
-        <span class="woven-line">Sebastián</span>
-      </h1>
-      <p class="hero-role">{{ i18n.t('hero.role') }}</p>
-      <p class="hero-tagline">{{ i18n.t('hero.tagline') }}</p>
-      <div class="hero-cta">
-        <button class="scroll-indicator" (click)="scrollTo('about')">
-          <span class="scroll-text">{{ i18n.t('hero.cta') }}</span>
-          <span class="scroll-arrow">&#x2193;</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quién soy -->
-  <section class="page-section" id="about">
-    <div class="section-hero">
-      <div class="section-warp" aria-hidden="true">
-        @for (_ of [].constructor(12); track $index) {
-          <span class="section-thread" [style.animation-delay.ms]="$index * 90"></span>
+    <!-- Loom Hero -->
+    <section class="loom-hero" id="top">
+      <div class="punch-card-edge" aria-hidden="true"></div>
+      <div class="warp-layer" aria-hidden="true">
+        @for (_ of [].constructor(24); track $index) {
+          <span class="warp-thread" [style.animation-delay.ms]="$index * 120"></span>
         }
       </div>
-      <h2 class="section-title">Quién soy</h2>
-      <p class="section-subtitle">londodev</p>
-    </div>
-    <article class="content-card">
-      <div class="about-avatar-area">
-        <div class="about-avatar-frame">
-          <span class="material-symbols-outlined about-avatar-icon">person</span>
-        </div>
-        <span class="about-status" aria-hidden="true"></span>
+      <div class="shuttle" aria-hidden="true">
+        <span class="shuttle-body"></span>
+        <span class="shuttle-trail"></span>
       </div>
-      <div class="content-body">
-        <p class="content-hook">
-          Ingeniero Electrónico &amp; Backend Developer — construyo sistemas que escalan, APIs que
-          responden en milisegundos, y soluciones que resuelven problemas reales.
+      <div class="hero-content">
+        <p class="weave-label">
+          @for (char of i18n.t('system.active'); track $index) {
+            <span class="weave-char" [style.animation-delay.ms]="$index * 80">{{ char }}</span>
+          }
         </p>
-        <ul class="content-values">
-          <li class="content-value">
-            <span class="content-bullet"></span>
-            <span><strong>Freelance con propósito:</strong> +10 proyectos entregados, desde e-commerce hasta plataformas de gestión industrial.</span>
-          </li>
-          <li class="content-value">
-            <span class="content-bullet"></span>
-            <span><strong>Contribuidor open source:</strong> PRs aceptadas en proyectos de la comunidad. Código que otros leen, usan y mejoran.</span>
-          </li>
-          <li class="content-value">
-            <span class="content-bullet"></span>
-            <span><strong>Mentor técnico:</strong> pasión por simplificar lo complejo y compartir conocimiento.</span>
-          </li>
-        </ul>
-        <div class="content-pills">
-          <span class="content-pill">Univalle · 9no semestre</span>
-          <span class="content-pill">English B2</span>
-          <span class="content-pill">10+ proyectos freelance</span>
-          <span class="content-pill">Python & Go</span>
-        </div>
+        <h1 class="woven-name">
+          <span class="woven-line">Juan</span>
+          <span class="woven-line">Sebastián</span>
+        </h1>
+        <p class="hero-role">{{ i18n.t('hero.role') }}</p>
+        <p class="hero-tagline">{{ i18n.t('hero.tagline') }}</p>
       </div>
-    </article>
-  </section>
+    </section>
 
-  <!-- Experiencia -->
-  <section class="page-section" id="experience">
-    <div class="section-hero">
-      <h2 class="section-title">Experiencia</h2>
-      <p class="section-subtitle">TRAMA_CARGADA</p>
-    </div>
-    <div class="exp-sections">
-      <div class="content-card">
-        <div class="exp-section-head">
-          <span class="material-symbols-outlined exp-section-icon">work</span>
-          <h3 class="exp-section-title">Trabajo</h3>
-        </div>
-        <article class="exp-item">
-          <div class="exp-item-dot" aria-hidden="true"></div>
-          <div class="exp-item-line" aria-hidden="true"></div>
-          <div class="exp-item-content">
-            <span class="exp-item-period">2024 — Presente</span>
-            <h4 class="exp-item-role">Backend Developer</h4>
-            <p class="exp-item-company">Freelance</p>
-            <p class="exp-item-desc">Desarrollo de APIs REST y GraphQL en Python (FastAPI) y Go. Diseño de arquitecturas escalables para startups y empresas. +10 proyectos entregados.</p>
-            <div class="exp-item-tags">
-              <span class="exp-tag">Python</span>
-              <span class="exp-tag">Go</span>
-              <span class="exp-tag">FastAPI</span>
-              <span class="exp-tag">PostgreSQL</span>
-              <span class="exp-tag">Docker</span>
-            </div>
+    <!-- Quién soy -->
+    <section class="page-section" id="about">
+      <div class="section-hdr">
+        <h2 class="section-ttl">Quién soy</h2>
+        <p class="section-sub">londodev</p>
+      </div>
+      <article class="content-card">
+        <div class="about-avatar-area">
+          <div class="about-avatar-frame">
+            <span class="material-symbols-outlined about-avatar-icon">person</span>
           </div>
-        </article>
-      </div>
-
-      <div class="content-card">
-        <div class="exp-section-head">
-          <span class="material-symbols-outlined exp-section-icon">code</span>
-          <h3 class="exp-section-title">Open Source</h3>
+          <span class="about-status" aria-hidden="true"></span>
         </div>
-        <article class="exp-item">
-          <div class="exp-item-dot" aria-hidden="true"></div>
-          <div class="exp-item-content">
-            <span class="exp-item-period">2023 — Presente</span>
-            <h4 class="exp-item-role">Contribuidor</h4>
-            <p class="exp-item-desc">Pull requests aceptadas en proyectos de la comunidad. Contribuciones en documentación, bug fixes y features.</p>
-            <div class="exp-item-tags">
-              <span class="exp-tag">Open Source</span>
-              <span class="exp-tag">PRs</span>
-              <span class="exp-tag">Code Review</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="content-card">
-        <div class="exp-section-head">
-          <span class="material-symbols-outlined exp-section-icon">school</span>
-          <h3 class="exp-section-title">Formación</h3>
-        </div>
-        <article class="exp-item">
-          <div class="exp-item-dot" aria-hidden="true"></div>
-          <div class="exp-item-content">
-            <span class="exp-item-period">2021 — 2026</span>
-            <h4 class="exp-item-role">Ingeniería Electrónica</h4>
-            <p class="exp-item-company">Universidad del Valle — 9no semestre</p>
-            <p class="exp-item-desc">Énfasis en sistemas digitales, programación y telecomunicaciones.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Proyectos -->
-  <section class="page-section" id="projects">
-    <header class="motifs-header">
-      <div class="ledger-strip" aria-hidden="true">
-        <span class="ledger-dot"></span>
-        <span class="ledger-line"></span>
-        <span class="ledger-dot"></span>
-        <span class="ledger-line"></span>
-        <span class="ledger-dot"></span>
-      </div>
-      <h2 class="section-title">Motivos tejidos</h2>
-      <p class="section-subtitle">PATRONES_COMPLETOS</p>
-    </header>
-    <div class="motifs-grid">
-      @for (project of projects; track project.name) {
-        <app-project-card [project]="project" />
-      }
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section class="page-section" id="contact">
-    <div class="section-hero">
-      <h2 class="section-title">Contacto</h2>
-      <p class="section-subtitle">ENLAZANDO_HILOS</p>
-    </div>
-    <div class="contact-grid">
-      <div class="content-card">
-        <h3 class="contact-card-title">Canales</h3>
-        <div class="contact-links">
-          <a class="contact-link-item" href="https://github.com/LondoDev" target="_blank" rel="noopener noreferrer">
-            <span class="material-symbols-outlined">code</span>
-            <div><strong>GitHub</strong><span>github.com/LondoDev</span></div>
-            <span class="contact-link-arrow material-symbols-outlined" aria-hidden="true">arrow_outward</span>
-          </a>
-          <a class="contact-link-item" href="https://linkedin.com/in/LondoDev" target="_blank" rel="noopener noreferrer">
-            <span class="material-symbols-outlined">link</span>
-            <div><strong>LinkedIn</strong><span>linkedin.com/in/LondoDev</span></div>
-            <span class="contact-link-arrow material-symbols-outlined" aria-hidden="true">arrow_outward</span>
-          </a>
-          <a class="contact-link-item" href="mailto:contacto@sebastian.dev">
-            <span class="material-symbols-outlined">mail</span>
-            <div><strong>Email</strong><span>contacto&#64;sebastian.dev</span></div>
-            <span class="contact-link-arrow material-symbols-outlined" aria-hidden="true">arrow_outward</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="content-card">
-        <h3 class="contact-card-title">Enviar mensaje</h3>
-        <p class="content-note">Se abrirá tu cliente de correo para enviar el mensaje.</p>
-        <div class="contact-field">
-          <label class="contact-label" for="contact-name">Nombre</label>
-          <input id="contact-name" type="text" class="contact-input" [formControl]="form.controls.name" placeholder="Tu nombre" [attr.aria-invalid]="form.controls.name.invalid && form.controls.name.touched" [attr.aria-describedby]="form.controls.name.invalid && form.controls.name.touched ? 'cname-err' : null" />
-          @if (form.controls.name.invalid && form.controls.name.touched) {
-            <p id="cname-err" class="contact-error">Este campo es requerido.</p>
-          }
-        </div>
-        <div class="contact-field">
-          <label class="contact-label" for="contact-email">Email</label>
-          <input id="contact-email" type="email" class="contact-input" [formControl]="form.controls.email" placeholder="tu@email.com" [attr.aria-invalid]="form.controls.email.invalid && form.controls.email.touched" [attr.aria-describedby]="form.controls.email.invalid && form.controls.email.touched ? 'cemail-err' : null" />
-          @if (form.controls.email.invalid && form.controls.email.touched) {
-            <p id="cemail-err" class="contact-error">{{ form.controls.email.hasError('required') ? 'Este campo es requerido.' : 'Ingresa un email válido.' }}</p>
-          }
-        </div>
-        <div class="contact-field">
-          <label class="contact-label" for="contact-message">Mensaje</label>
-          <textarea id="contact-message" class="contact-input contact-textarea" [formControl]="form.controls.message" placeholder="¿En qué proyecto te gustaría trabajar?" rows="4" [attr.aria-invalid]="form.controls.message.invalid && form.controls.message.touched" [attr.aria-describedby]="form.controls.message.invalid && form.controls.message.touched ? 'cmsg-err' : null"></textarea>
-          @if (form.controls.message.invalid && form.controls.message.touched) {
-            <p id="cmsg-err" class="contact-error">Este campo es requerido.</p>
-          }
-        </div>
-        <button type="button" class="contact-submit" [disabled]="form.invalid || submitted()" (click)="onSubmit()">
-          <span class="material-symbols-outlined">send</span>
-          Enviar mensaje
-        </button>
-        @if (submitted()) {
-          <p class="contact-success" role="status">
-            <span class="material-symbols-outlined">check_circle</span>
-            Revisa tu cliente de correo para enviar el mensaje.
+        <div class="content-body">
+          <p class="content-hook">
+            Ingeniero Electrónico &amp; Backend Developer — construyo sistemas que escalan, APIs que responden en milisegundos, y soluciones que resuelven problemas reales.
           </p>
+          <ul class="content-values">
+            <li class="content-value">
+              <span class="content-bullet"></span>
+              <span><strong>Freelance con propósito:</strong> +10 proyectos entregados, desde e-commerce hasta plataformas de gestión industrial.</span>
+            </li>
+            <li class="content-value">
+              <span class="content-bullet"></span>
+              <span><strong>Contribuidor open source:</strong> PRs aceptadas en proyectos de la comunidad.</span>
+            </li>
+            <li class="content-value">
+              <span class="content-bullet"></span>
+              <span><strong>Mentor técnico:</strong> pasión por simplificar lo complejo y compartir conocimiento.</span>
+            </li>
+          </ul>
+          <div class="content-pills">
+            <span class="content-pill">Univalle · 9no semestre</span>
+            <span class="content-pill">English B2</span>
+            <span class="content-pill">10+ proyectos freelance</span>
+            <span class="content-pill">Python & Go</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="page-section" id="projects">
+      <div class="section-hdr">
+        <h2 class="section-ttl">Proyectos</h2>
+        <p class="section-sub">PATRONES</p>
+      </div>
+      <div class="motifs-grid">
+        @for (project of projects; track project.name) {
+          <app-project-card [project]="project" />
         }
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="home-footer">
-    <div class="footer-weave" aria-hidden="true"></div>
-    <p class="footer-text">{{ i18n.t('footer.text') }}</p>
-    <div class="footer-links">
-      <a class="footer-link" href="https://github.com/LondoDev" target="_blank" rel="noopener">
-        <span class="material-symbols-outlined">code</span>GitHub
-      </a>
-      <a class="footer-link" href="https://linkedin.com/in/LondoDev" target="_blank" rel="noopener">
-        <span class="material-symbols-outlined">link</span>LinkedIn
-      </a>
-      <a class="footer-link" href="mailto:contacto@sebastian.dev">
-        <span class="material-symbols-outlined">mail</span>Contacto
-      </a>
-    </div>
-  </footer>
+    <!-- Experiencia -->
+    <section class="page-section" id="experience">
+      <div class="section-hdr">
+        <h2 class="section-ttl">Experiencia</h2>
+        <p class="section-sub">TRAMA_CARGADA</p>
+      </div>
+      <div class="exp-sections">
+        <div class="content-card">
+          <div class="exp-section-head">
+            <span class="material-symbols-outlined exp-section-icon">work</span>
+            <h3 class="exp-section-title">Trabajo</h3>
+          </div>
+          <article class="exp-item">
+            <div class="exp-item-dot" aria-hidden="true"></div>
+            <div class="exp-item-line" aria-hidden="true"></div>
+            <div class="exp-item-content">
+              <span class="exp-item-period">2024 — Presente</span>
+              <h4 class="exp-item-role">Backend Developer</h4>
+              <p class="exp-item-company">Freelance</p>
+              <p class="exp-item-desc">Desarrollo de APIs REST y GraphQL en Python (FastAPI) y Go. Diseño de arquitecturas escalables para startups y empresas. +10 proyectos entregados.</p>
+              <div class="exp-item-tags">
+                <span class="exp-tag">Python</span><span class="exp-tag">Go</span><span class="exp-tag">FastAPI</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Docker</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="content-card">
+          <div class="exp-section-head">
+            <span class="material-symbols-outlined exp-section-icon">code</span>
+            <h3 class="exp-section-title">Open Source</h3>
+          </div>
+          <article class="exp-item">
+            <div class="exp-item-dot" aria-hidden="true"></div>
+            <div class="exp-item-content">
+              <span class="exp-item-period">2023 — Presente</span>
+              <h4 class="exp-item-role">Contribuidor</h4>
+              <p class="exp-item-desc">Pull requests aceptadas en proyectos de la comunidad. Contribuciones en documentación, bug fixes y features.</p>
+              <div class="exp-item-tags">
+                <span class="exp-tag">Open Source</span><span class="exp-tag">PRs</span><span class="exp-tag">Code Review</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="content-card">
+          <div class="exp-section-head">
+            <span class="material-symbols-outlined exp-section-icon">school</span>
+            <h3 class="exp-section-title">Formación</h3>
+          </div>
+          <article class="exp-item">
+            <div class="exp-item-dot" aria-hidden="true"></div>
+            <div class="exp-item-content">
+              <span class="exp-item-period">2021 — 2026</span>
+              <h4 class="exp-item-role">Ingeniería Electrónica</h4>
+              <p class="exp-item-company">Universidad del Valle — 9no semestre</p>
+              <p class="exp-item-desc">Énfasis en sistemas digitales, programación y telecomunicaciones.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="page-section" id="contact">
+      <div class="section-hdr">
+        <h2 class="section-ttl">Contacto</h2>
+        <p class="section-sub">ENLAZANDO_HILOS</p>
+      </div>
+      <div class="contact-grid">
+        <div class="content-card">
+          <h3 class="contact-card-title">Canales</h3>
+          <div class="contact-links">
+            <a class="contact-link-item" href="https://github.com/LondoDev" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined">code</span>
+              <div><strong>GitHub</strong><span>github.com/LondoDev</span></div>
+            </a>
+            <a class="contact-link-item" href="https://linkedin.com/in/LondoDev" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined">link</span>
+              <div><strong>LinkedIn</strong><span>linkedin.com/in/LondoDev</span></div>
+            </a>
+            <a class="contact-link-item" href="mailto:contacto@sebastian.dev">
+              <span class="material-symbols-outlined">mail</span>
+              <div><strong>Email</strong><span>contacto&#64;sebastian.dev</span></div>
+            </a>
+          </div>
+        </div>
+        <div class="content-card">
+          <h3 class="contact-card-title">Enviar mensaje</h3>
+          <p class="content-note">Se abrirá tu cliente de correo para enviar el mensaje.</p>
+          <div class="contact-field">
+            <label class="contact-label" for="contact-name">Nombre</label>
+            <input id="contact-name" type="text" class="contact-input" [formControl]="form.controls.name" placeholder="Tu nombre" />
+          </div>
+          <div class="contact-field">
+            <label class="contact-label" for="contact-email">Email</label>
+            <input id="contact-email" type="email" class="contact-input" [formControl]="form.controls.email" placeholder="tu@email.com" />
+          </div>
+          <div class="contact-field">
+            <label class="contact-label" for="contact-message">Mensaje</label>
+            <textarea id="contact-message" class="contact-input contact-textarea" [formControl]="form.controls.message" placeholder="¿En qué proyecto te gustaría trabajar?" rows="4"></textarea>
+          </div>
+          <button type="button" class="contact-submit" [disabled]="form.invalid || submitted()" (click)="onSubmit()">
+            <span class="material-symbols-outlined">send</span>Enviar mensaje
+          </button>
+          @if (submitted()) {
+            <p class="contact-success" role="status">
+              <span class="material-symbols-outlined">check_circle</span>
+              Revisa tu cliente de correo para enviar el mensaje.
+            </p>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+      <div class="footer-weave" aria-hidden="true"></div>
+      <p class="footer-text">{{ i18n.t('footer.text') }}</p>
+      <div class="footer-links">
+        <a class="footer-link" href="https://github.com/LondoDev" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined">code</span>GitHub
+        </a>
+        <a class="footer-link" href="https://linkedin.com/in/LondoDev" target="_blank" rel="noopener">
+          <span class="material-symbols-outlined">link</span>LinkedIn
+        </a>
+        <a class="footer-link" href="mailto:contacto@sebastian.dev">
+          <span class="material-symbols-outlined">mail</span>Contacto
+        </a>
+      </div>
+    </footer>
+  </div>
 
   <app-terminal-bar aria-label="Barra de comandos terminal" />
 </div>

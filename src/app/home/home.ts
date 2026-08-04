@@ -17,6 +17,8 @@ export class Home implements AfterViewInit, OnDestroy {
   private _observer?: IntersectionObserver;
   private _cmdService = inject(TerminalCommandService);
 
+  readonly sidebarOpen = signal(true);
+  readonly avatarUrl = 'avatar.jpeg';
   readonly submitted = signal(false);
 
   readonly form = this._fb.group({
@@ -134,5 +136,9 @@ export class Home implements AfterViewInit, OnDestroy {
 
   toggleLang(): void {
     this.i18n.toggle();
+  }
+
+  toggleSidebar(): void {
+    this.sidebarOpen.update((v) => !v);
   }
 }
